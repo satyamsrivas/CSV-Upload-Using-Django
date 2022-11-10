@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Csv File Upload</title>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+  </head>
+  <body>
+    <div class="mb-3">
+      <div class="mb-3"><label class="form-label" for="customFile"
+        >Upload A CSV file</label
+      ></div>
+      
+      <form method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{new_form.as_p}}
+        <div class="mb-3">
+          <input
+            type="file"
+            name="document"
+            id="document"
+            required="required"
+            class="form-control" 
+          />
+        </div class="mb-3">
+        <div><button class="btn btn-primary" id="Submit">Upload</button></div>
+      </form>
+
+      
+    </div>
+
+    <div><h2>CSV Data</h2>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Open</th>
+    <th>Close</th>
+    <th>High</th>
+    <th>Low</th>
+    <th>Adj_Close</th>
+    <th>Volume</th>
+  </tr>
+  
+    {% for o in key_data %}
+    <tr>
+    <td>{{o.Date}}</td>
+    <td>{{o.Open}}</td>
+    <td>{{o.Close}}</td>
+    <td>{{o.High}}</td>
+    <td>{{o.Low}}</td>
+    <td>{{o.Adj_Close}}</td>
+    <td>{{o.Volume}}</td>
+    </tr>
+    {% endfor %}
+</table></div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
